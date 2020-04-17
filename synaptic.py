@@ -9,7 +9,7 @@ _text_colors = {
     "NORMAL": "\033[0m",
     "BLUE": "\033[;36m",
     "UNDERLINED_BLUE": "\033[4;35;36m",
-    "RED": "\033[91mm",
+    "RED": "\033[91m",
     "YELLOW": "\033[93m",
     "GREEN": "\033[92m"
 }
@@ -40,7 +40,7 @@ class synaptic():
                 assert topic_to_read >= 0
                 break
             except:
-                print("Not valid option! Please, add the number of the topic you want to try with")
+                print("[X] Not valid option! Please, add the number of the topic you want to try with")
 
         self.make_question_from_topic(topic_to_read)
 
@@ -73,9 +73,11 @@ class synaptic():
                 self._colored_print("Were you right? S/N", _text_colors["YELLOW"])
                 user_result = str(input())
                 assert user_result.upper() == "S" or user_result.upper() == "N"
+                result = ("Saving success ...",_text_colors["GREEN"]) if user_result.upper() == "S" else ("Saving error...", _text_colors["RED"])
+                self._colored_print(result[0], result[1])
                 break
             except:
-                self._colored_print("Not valid option!", _text_colors["RED"])
+                self._colored_print("[X] Not valid option!", _text_colors["RED"])
 
         return user_result
 
